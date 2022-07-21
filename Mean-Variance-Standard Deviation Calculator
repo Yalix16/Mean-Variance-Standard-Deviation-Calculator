@@ -1,0 +1,28 @@
+from cgi import test
+from itertools import count
+import numpy as np
+import pandas as pd
+
+detective = dict()
+
+def Calculator(): 
+    List = input("Enter a list of numbers separated by , :")
+    Calculate = List.split(",")
+    for i in range(len(Calculate)):
+        Calculate[i]=int(Calculate[i])
+    if len(Calculate) < 9 : 
+        print("List must contain nine numbers.")
+    else : 
+        Calculate = np.array(Calculate) 
+        Calculate.resize(3,3)
+        detective["mean"] =[Calculate.mean(axis=0),Calculate.mean(axis=1),Calculate.mean()]
+        detective["var"] =[Calculate.var(axis=0),Calculate.var(axis=1),Calculate.var()]
+        detective["std"] =[Calculate.std(axis=0),Calculate.std(axis=1),Calculate.std()]
+        detective["max"] =[Calculate.max(axis=0),Calculate.max(axis=1),Calculate.max()]
+        detective["min"] =[Calculate.min(axis=0),Calculate.min(axis=1),Calculate.min()]
+        detective["sum"] =[Calculate.sum(axis=0),Calculate.sum(axis=1),Calculate.sum()]
+        final = list(detective.items())
+        print(final)
+
+Calculator()
+
